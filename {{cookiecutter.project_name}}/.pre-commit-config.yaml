@@ -1,0 +1,11 @@
+repos:
+  - repo: http://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.3.3
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+
+  - repo: http://github.com/pre-commit/mirrors-mypy
+    rev: v1.9.0
+    hooks:
+      - id: mypy

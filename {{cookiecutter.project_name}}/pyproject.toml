@@ -1,0 +1,73 @@
+[tool.poetry]
+authors = {{ cookiecutter.authors.split(",")|replace("'", '"') }}
+name = "{{ cookiecutter.project_slug }}"
+version = "1.0.0"
+readme = "README.md"
+description = "{{ cookiecutter.description }}"
+
+
+[tool.poetry.dependencies]
+python = ">=3.11, <3.13"
+pytest = "^7.4.0"
+pytest-asyncio = "^0.21.1"
+allure-pytest = "^2.13.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dev-dependencies]
+ruff = "^0.7.3"
+mypy = "^1.13.0"
+pre-commit = "^4.0.1"
+
+### LINT config ###
+[tool.ruff]
+select = ["N", "B", "A", "E", "W", "F", "ASYNC", "S", "D", "I"]
+ignore = [
+    "PT001",
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D107",
+    "D104",
+    "W293",
+    "S101",
+    "D212",
+    "D200",
+    "UP007",
+    "S105",
+    "S311",
+]
+
+line-length = 120
+
+extend-exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "__init__.py",
+]
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.flake8-builtins]
+builtins-ignorelist = ["id"]
+
+[tool.mypy]
+packages = ["clients", "tests"]   # Измените директории, если это нужно
+ignore_missing_imports = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+
+
+### TEST config ###
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = "--color=yes"

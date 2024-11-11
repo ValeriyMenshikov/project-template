@@ -1,11 +1,9 @@
 {
     "project_name": "My awesome service",
-    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('.', '-').trim() }}",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('.', '-') }}",
     "repository": "",
     "user_email": "",
     "authors": "",
-    "proto_package": "{{ 'ozon.' + cookiecutter.repository.replace('/', '.').replace('-', '_') }}",
     "description": "{{ cookiecutter.project_slug }} project",
-    "csharp_namespace": "{{ cookiecutter.proto_package.replace('-', '_').replace('.', '_').split('_')|map('capitalize')|join('.') }}",
-    "proto_name": "{{ cookiecutter.project_slug.replace('_', '-').split('-')|map('capitalize')|join }}"
+    "use_current_directory": "y"
 }
