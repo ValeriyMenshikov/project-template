@@ -5,26 +5,34 @@ version = "1.0.0"
 readme = "README.md"
 description = "{{ cookiecutter.description }}"
 
-
 [tool.poetry.dependencies]
-python = ">=3.11, <3.13"
-pytest = "^7.4.0"
-pytest-asyncio = "^0.21.1"
+python = "^3.11"
+swagger-coverage = { url = "https://github.com/ValeriyMenshikov/swagger-coverage-py/archive/refs/heads/master.zip" }
+telebot = "^0.0.5"
+pytest-telegram-notifier = "^1.4.0"
+pytest = "^8.3.4"
+pydantic = "^2.10.3"
+pyhamcrest = "^2.1.0"
+py-linq = "^1.4.0"
+assertpy = "^1.1"
 allure-pytest = "^2.13.5"
+structlog = "^24.4.0"
+retrying = "^1.3.4"
+vyper-config = "^1.2.1"
+httpx = "^0.28.0"
+curlify2 = "^2.0.0"
+pytest-asyncio = "^0.24.0"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.dev-dependencies]
-ruff = "^0.7.3"
-mypy = "^1.13.0"
-pre-commit = "^4.0.1"
 
 ### LINT config ###
+[tool.poetry.group.lint.dependencies]
+ruff = "^0.8.2"
+mypy = "^1.5.0"
+types-requests = "^2.32.0.20241016"
+
 [tool.ruff]
-select = ["N", "B", "A", "E", "W", "F", "ASYNC", "S", "D", "I"]
-ignore = [
+lint.select = ["N", "B", "A", "E", "W", "F", "ASYNC", "S", "D", "I"]
+lint.ignore = [
     "PT001",
     "D100",
     "D101",
@@ -48,26 +56,32 @@ extend-exclude = [
     "__pycache__",
     "build",
     "dist",
-    "__init__.py",
+    "__init__.py"
 ]
 
-[tool.ruff.mccabe]
+
+
+[tool.ruff.lint.mccabe]
 max-complexity = 10
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.flake8-builtins]
+[tool.ruff.lint.flake8-builtins]
 builtins-ignorelist = ["id"]
 
-[tool.mypy]
-packages = ["clients", "tests"]   # Измените директории, если это нужно
-ignore_missing_imports = true
-disallow_untyped_defs = true
-check_untyped_defs = true
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
-
-### TEST config ###
 [tool.pytest.ini_options]
+addopts = """
+  -s
+  -vv
+  --telegram-notifier
+  --alluredir=../allure-results
+  --telegram-notifier-config-file=telegram-notifier-config.ini
+  --disable-pytest-warnings
+  --durations=10
+"""
 asyncio_mode = "auto"
-addopts = "--color=yes"
