@@ -43,7 +43,6 @@ def init_pre_commit():
 if __name__ == "__main__":
     if "{{ cookiecutter.use_current_directory }}".lower() == "y":
         src = Path.cwd()
-        assert src.name == "{{ cookiecutter.project_slug }}"
         move_directory_contents(src, src.parent)
         os.chdir(src.parent)
     init_poetry()

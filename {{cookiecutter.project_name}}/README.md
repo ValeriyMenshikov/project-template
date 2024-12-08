@@ -22,6 +22,6 @@
  ├── gitlab-ci.yml                  # Файл с подключением проекта к пайплайну для проектов с тестами
  ├── mypy.ini                       # Файл конфигурации линтера mypy
  ├── telegram-notifier-config.ini   # Файл конфигурации телеграм репортера
- ├── swagger-coverage-config-{{cookiecutter.project_name}}.json                # Файл конфигурации для снятия покрытия сервиса автотестами
+ ├── swagger-coverage-config-{{cookiecutter.project_slug}}.json                # Файл конфигурации для снятия покрытия сервиса автотестами
  └── README.md                      # Файл с описанием репозитория для тестов
 ```
