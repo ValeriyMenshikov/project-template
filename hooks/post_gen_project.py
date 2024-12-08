@@ -24,19 +24,18 @@ def move_directory_contents(src: PurePath, dst: PurePath):
         _move_single_file(src, temp_dir_path, item)
 
     for item in os.listdir(temp_dir_path):
-        print(f"Перемещение {item} в {dst}")
         _move_single_file(temp_dir_path, dst, item)
 
     os.removedirs(src)
 
 
 def init_poetry():
+    subprocess.run(["poetry", "config", "virtualenvs.in-project", "true"])
     subprocess.run(["poetry", "init", "--no-interaction"])
     subprocess.run(["poetry", "install", "--no-root"])
 
 def init_pre_commit():
     subprocess.run(["poetry", "add", "pre-commit"])
-    subprocess.run(["poetry", "install"])
     subprocess.run(["poetry", "run", "pre-commit", "install"])
     subprocess.run(["poetry", "run", "pre-commit", "autoupdate"])
 
