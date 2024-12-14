@@ -29,6 +29,8 @@ pytest-asyncio = "^0.24.0"
 ruff = "^0.8.2"
 mypy = "^1.5.0"
 types-requests = "^2.32.0.20241016"
+aiohttp = "^3.11.10"
+aiohttp-retry = "^2.9.1"
 
 [tool.ruff]
 lint.select = ["N", "B", "A", "E", "W", "F", "ASYNC", "S", "D", "I"]
@@ -78,10 +80,10 @@ build-backend = "poetry.core.masonry.api"
 addopts = """
   -s
   -vv
-  --telegram-notifier
   --alluredir=../allure-results
-  --telegram-notifier-config-file=telegram-notifier-config.ini
   --disable-pytest-warnings
   --durations=10
 """
+#  --telegram-notifier
+#  --telegram-notifier-config-file=telegram-notifier-config.ini
 asyncio_mode = "auto"
